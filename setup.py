@@ -5,6 +5,10 @@ setup(
     author = "Michael Kerrin",
     author_email = "michael.kerrin@gmail.com",
 
+    description = "zc.buildout recipe for closurebuilder",
+    long_description = open("src/pwt/recipe/closurebuilder/README.txt").read(),
+    url = "https://github.com/mkerrin/pwt.recipe.closurebuilder",
+
     packages = find_packages("src"),
     package_dir = {"": "src"},
 
