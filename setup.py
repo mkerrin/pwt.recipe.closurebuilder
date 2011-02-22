@@ -29,5 +29,6 @@ compile = pwt.recipe.closurebuilder:Compile
     include_package_data = True,
     zip_safe = False,
 
-    test_suite = "pwt.recipe.closurebuilder.tests.test_suite",
+    tests_require = ["zope.testing"],
+    test_suite = "pwt.recipe.closurebuilder.tests.suite",
     )
