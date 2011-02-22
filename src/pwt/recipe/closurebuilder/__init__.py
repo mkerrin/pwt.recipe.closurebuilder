@@ -39,6 +39,8 @@ class Deps(object):
         self.options = options
 
         self.output = options["output"]
+        # handy for configuration files that need to know the filename
+        options["filename"] = os.path.basename(self.output)
 
     def _getRelativePathToSourceDict(self, root, prefix = ""):
         start_wd = os.getcwd()
@@ -170,10 +172,9 @@ class Compile(object):
 
         md5name = hashlib.md5()
         md5name.update(compiled_code)
-        filename = md5name.hexdigest()
+        self.options["filename"] = filename = md5name.hexdigest() + ".js"
 
-        open(
-            os.path.join(self.outputdir, filename + ".js"), "w") \
-            .write(compiled_code)
+        open(os.path.join(self.outputdir, filename), "w") \
+                                          .write(compiled_code)
 
         return (filename,)
