@@ -106,12 +106,14 @@ JavaScript application.
   ... inputs = %(dir)s/js/a.js
   ... ''' %{'dir': sample_buildout})
 
-  >>> print system(buildout) #doctest:+ELLIPSIS
-  Uninstalling deps.js.
-  Installing deps.js.
-  Installing compiled.js.
-  root: Compiling with the following command: java -jar ...
-  <BLANKLINE>
+  >>> output = system(buildout)
+  >>> output == '''Uninstalling deps.js.
+  ... Installing deps.js.
+  ... Installing compiled.js.
+  ... root: Compiling with the following command: java -jar %(jar)s --js %(dir)s/js/goog/base.js --js %(dir)s/js/b.js --js %(dir)s/js/a.js
+  ... ''' %{'jar': os.path.join(os.path.dirname(__file__), 'compiler-801.jar'),
+  ...       'dir': sample_buildout}
+  True
 
   >>> ls(sample_buildout)
   -  .installed.cfg
@@ -119,6 +121,50 @@ JavaScript application.
   -  buildout.cfg
   -  d1.js
   -  db5293d69c7cf152489f73b7221b146d.js
+  d  develop-eggs
+  d  eggs
+  d  js
+  d  parts
+
+We can also specify extra files that might not have goog.provide declarations
+in them so won't be picked up by the depswriter recipe.
+
+  >>> write('js/c.js', '''
+  ... alert('c');
+  ... ''')
+
+  >>> write('buildout.cfg', '''
+  ... [buildout]
+  ... parts = deps.js compiled.js
+  ...
+  ... [deps.js]
+  ... recipe = pwt.recipe.closurebuilder:dependency
+  ... output = %(dir)s/d1.js
+  ... roots = %(dir)s/js
+  ...
+  ... [compiled.js]
+  ... recipe = pwt.recipe.closurebuilder:compile
+  ... dependency = deps.js
+  ... output = %(dir)s
+  ... inputs = %(dir)s/js/a.js
+  ... extra_js = js/c.js
+  ... ''' %{'dir': sample_buildout})
+
+  >>> output = system(buildout)
+  >>> output == '''Uninstalling compiled.js.
+  ... Updating deps.js.
+  ... Installing compiled.js.
+  ... root: Compiling with the following command: java -jar %(jar)s --js js/c.js --js %(dir)s/js/goog/base.js --js %(dir)s/js/b.js --js %(dir)s/js/a.js
+  ... ''' %{'jar': os.path.join(os.path.dirname(__file__), 'compiler-801.jar'),
+  ...       'dir': sample_buildout}
+  True
+
+  >>> ls(sample_buildout)
+  -  .installed.cfg
+  -  0fc706f6fcbe80967d462fd18e71be1b.js
+  d  bin
+  -  buildout.cfg
+  -  d1.js
   d  develop-eggs
   d  eggs
   d  js

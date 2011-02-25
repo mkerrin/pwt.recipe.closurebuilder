@@ -107,6 +107,9 @@ class Deps(object):
 
         return (self.output,)
 
+    def update(self):
+        return self.install()
+
 
 class Compile(object):
 
@@ -121,6 +124,12 @@ class Compile(object):
         self.compiler_flags = [
             flag for flag in options.get("flags", "").split() if flag
             ]
+
+        self.extra_js = [
+            js
+            for js in self.options.get("extra_js", "").split()
+            if js]
+
         self.outputdir = self.options["output"]
 
     def get_base(self, sources):
@@ -164,11 +173,11 @@ class Compile(object):
                 "specified with the --namespace or --input flags.")
 
         deps = [base] + tree.GetDependencies(input_namespaces)
+        deps_sources = self.extra_js + \
+                       [js_source.GetSourcePath()[1] for js_source in deps]
 
         compiled_code = jscompiler.Compile(
-            self.compiler_jar,
-            [js_source.GetSourcePath()[1] for js_source in deps],
-            self.compiler_flags)
+            self.compiler_jar, deps_sources, self.compiler_flags)
 
         md5name = hashlib.md5()
         md5name.update(compiled_code)
