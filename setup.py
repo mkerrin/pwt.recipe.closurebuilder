@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name = "pwt.recipe.closurebuilder",
-    version = "0.9.2",
+    version = "0.9.3",
     author = "Michael Kerrin",
     author_email = "michael.kerrin@gmail.com",
 

@@ -2,6 +2,10 @@
 CHANGES
 =======
 
+0.9.3
+-----
+- Update closurebuilder and the closure compiler.
+
 0.9.2
 -----
 
