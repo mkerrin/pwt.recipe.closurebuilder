@@ -14,6 +14,9 @@ import jscompiler
 # reset the path
 sys.path = sys.path[:-1]
 
+DEFAULT_COMPILER_JAR = os.path.join(
+    os.path.dirname(__file__), "compiler-801.jar")
+
 class Source(source.Source):
 
     def __init__(self, path):
@@ -119,8 +122,7 @@ class Compile(object):
         self.options = options
 
         self.dependency = options["dependency"]
-        self.compiler_jar = options.get(
-            "jar", os.path.join(os.path.dirname(__file__), "compiler-801.jar"))
+        self.compiler_jar = options.get("jar", DEFAULT_COMPILER_JAR)
         self.compiler_flags = [
             flag for flag in options.get("flags", "").split() if flag
             ]
