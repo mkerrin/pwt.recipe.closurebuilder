@@ -15,7 +15,7 @@ import jscompiler
 sys.path = sys.path[:-1]
 
 DEFAULT_COMPILER_JAR = os.path.join(
-    os.path.dirname(__file__), "compiler-961.jar")
+    os.path.dirname(__file__), "compiler-1111.jar")
 
 class Source(source.Source):
 

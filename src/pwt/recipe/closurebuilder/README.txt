@@ -111,13 +111,13 @@ JavaScript application.
   ... Installing deps.js.
   ... Installing compiled.js.
   ... root: Compiling with the following command: java -jar %(jar)s --js %(dir)s/js/goog/base.js --js %(dir)s/js/b.js --js %(dir)s/js/a.js
-  ... ''' %{'jar': os.path.join(os.path.dirname(__file__), 'compiler-961.jar'),
+  ... ''' %{'jar': os.path.join(os.path.dirname(__file__), 'compiler-1111.jar'),
   ...       'dir': sample_buildout}
   True
 
   >>> ls(sample_buildout)
   -  .installed.cfg
-  -  bc41220de966d83def110b37e3fefc73.js
+  -  585c61eedf608b189402ca9c6e31db6d.js
   d  bin
   -  buildout.cfg
   -  d1.js
@@ -155,15 +155,15 @@ in them so won't be picked up by the depswriter recipe.
   ... Updating deps.js.
   ... Installing compiled.js.
   ... root: Compiling with the following command: java -jar %(jar)s --js js/c.js --js %(dir)s/js/goog/base.js --js %(dir)s/js/b.js --js %(dir)s/js/a.js
-  ... ''' %{'jar': os.path.join(os.path.dirname(__file__), 'compiler-961.jar'),
+  ... ''' %{'jar': os.path.join(os.path.dirname(__file__), 'compiler-1111.jar'),
   ...       'dir': sample_buildout}
   True
 
   >>> ls(sample_buildout)
   -  .installed.cfg
+  -  8af2a8a795442b3e9229b220a2ddff9e.js
   d  bin
   -  buildout.cfg
-  -  cd01d46dee31867866de7a1fb0784944.js
   -  d1.js
   d  develop-eggs
   d  eggs
