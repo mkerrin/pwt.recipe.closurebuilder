@@ -2,6 +2,11 @@
 CHANGES
 =======
 
+0.9.5
+-----
+
+- Update to latest closure compiler.
+
 0.9.4
 -----
 
