@@ -2,6 +2,11 @@
 CHANGES
 =======
 
+0.9.4
+-----
+
+- Package the contents correctly.
+
 0.9.3
 -----
 - Update closurebuilder and the closure compiler.
