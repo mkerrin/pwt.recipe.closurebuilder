@@ -51,7 +51,7 @@ located within your project.
   // Please do not edit.
   goog.addDependency('a.js', ['pwt.provideA'], ['pwt.provideB']);
   goog.addDependency('b.js', ['pwt.provideB'], []);
-  goog.addDependency('goog/base.js', [], []);
+  goog.addDependency('goog/base.js', ['goog'], []);
 
 
 roots with prefix
@@ -81,7 +81,7 @@ namespaces, then we use the root_with_prefix option.
   // Please do not edit.
   goog.addDependency('/media/a.js', ['pwt.provideA'], ['pwt.provideB']);
   goog.addDependency('/media/b.js', ['pwt.provideB'], []);
-  goog.addDependency('/media/goog/base.js', [], []);
+  goog.addDependency('/media/goog/base.js', ['goog'], []);
 
 
 Compile
@@ -117,7 +117,7 @@ JavaScript application.
 
   >>> ls(sample_buildout)
   -  .installed.cfg
-  -  585c61eedf608b189402ca9c6e31db6d.js
+  -  b673eec4efdef742c2f8a0e1985222a4.js
   d  bin
   -  buildout.cfg
   -  d1.js
@@ -161,7 +161,7 @@ in them so won't be picked up by the depswriter recipe.
 
   >>> ls(sample_buildout)
   -  .installed.cfg
-  -  8af2a8a795442b3e9229b220a2ddff9e.js
+  -  aeff274d286518a658a735ab6910528b.js
   d  bin
   -  buildout.cfg
   -  d1.js
