@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name = "pwt.recipe.closurebuilder",
-    version = "0.9.5",
+    version = "0.9.6",
     author = "Michael Kerrin",
     author_email = "michael.kerrin@gmail.com",
 
@@ -12,6 +12,7 @@ setup(
 
     packages = find_packages("src"),
     package_dir = {"": "src"},
+    namespace_packages = ["pwt"],
 
     install_requires = ["setuptools",
                         "zc.buildout",
