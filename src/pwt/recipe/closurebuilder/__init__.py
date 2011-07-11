@@ -30,6 +30,30 @@ class Source(source.Source):
     def GetSourcePath(self):
         return self._source, self._path
 
+class DepsTree(depstree.DepsTree):
+
+    def __init__(self, sources):
+        """Initializes the tree with a set of sources.
+
+        Args:
+          sources: A set of JavaScript sources.
+
+        Raises:
+          MultipleProvideError: A namespace is provided by muplitple sources.
+          NamespaceNotFoundError: A namespace is required but never provided.
+        """
+        self._sources = sources
+        self._provides_map = dict()
+
+        # Ensure nothing was provided twice.
+        for source in sources:
+            for provide in source.provides:
+                if provide in self._provides_map:
+                    raise MultipleProvideError(
+                        provide, [self._provides_map[provide], source])
+
+                self._provides_map[provide] = source
+
 
 class Deps(object):
     """
@@ -141,7 +165,7 @@ class Compile(object):
     def install(self):
         self.path_to_source = self.buildout[self.dependency].recipe.path_to_source
         sources = self.path_to_source.values()
-        tree = depstree.DepsTree(sources)
+        tree = DepsTree(sources)
 
         base = closurebuilder._GetClosureBaseFile(sources)
 
