@@ -2,6 +2,17 @@
 CHANGES
 =======
 
+0.9.7
+-----
+
+- Update recipe to generate all contents on import so that we can generate
+  configuration details.
+
+0.9.6
+-----
+
+-
+
 0.9.5
 -----
 
