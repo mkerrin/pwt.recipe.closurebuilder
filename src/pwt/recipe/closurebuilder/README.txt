@@ -107,17 +107,17 @@ JavaScript application.
   ... ''' %{'dir': sample_buildout})
 
   >>> output = system(buildout)
-  >>> output == '''Uninstalling deps.js.
+  >>> output == '''root: Compiling with the following command: java -jar %(jar)s --js %(dir)s/js/goog/base.js --js %(dir)s/js/b.js --js %(dir)s/js/a.js
+  ... Uninstalling deps.js.
   ... Installing deps.js.
   ... Installing compiled.js.
-  ... root: Compiling with the following command: java -jar %(jar)s --js %(dir)s/js/goog/base.js --js %(dir)s/js/b.js --js %(dir)s/js/a.js
   ... ''' %{'jar': os.path.join(os.path.dirname(__file__), 'compiler-1111.jar'),
   ...       'dir': sample_buildout}
   True
 
   >>> ls(sample_buildout)
   -  .installed.cfg
-  -  b673eec4efdef742c2f8a0e1985222a4.js
+  -  0fb0e24aea59f6281f3c615ffe650823.js
   d  bin
   -  buildout.cfg
   -  d1.js
@@ -151,17 +151,17 @@ in them so won't be picked up by the depswriter recipe.
   ... ''' %{'dir': sample_buildout})
 
   >>> output = system(buildout)
-  >>> output == '''Uninstalling compiled.js.
+  >>> output == '''root: Compiling with the following command: java -jar %(jar)s --js js/c.js --js %(dir)s/js/goog/base.js --js %(dir)s/js/b.js --js %(dir)s/js/a.js
+  ... Uninstalling compiled.js.
   ... Updating deps.js.
   ... Installing compiled.js.
-  ... root: Compiling with the following command: java -jar %(jar)s --js js/c.js --js %(dir)s/js/goog/base.js --js %(dir)s/js/b.js --js %(dir)s/js/a.js
   ... ''' %{'jar': os.path.join(os.path.dirname(__file__), 'compiler-1111.jar'),
   ...       'dir': sample_buildout}
   True
 
   >>> ls(sample_buildout)
   -  .installed.cfg
-  -  aeff274d286518a658a735ab6910528b.js
+  -  b68ab8e7a5aa2b2787d35e9b762fb191.js
   d  bin
   -  buildout.cfg
   -  d1.js
