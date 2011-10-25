@@ -2,6 +2,12 @@
 CHANGES
 =======
 
+0.9.8
+-----
+
+- Make the Deps recipe compatible with the Compile recipe by adding in the
+  `filename` option.
+
 0.9.7
 -----
 
